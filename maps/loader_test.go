@@ -1,4 +1,4 @@
-package data
+package maps
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestReadData(t *testing.T) {
-	strs, err := readData("states.json")
+	strs, err := readData("../cmd/state-server/data/states.json")
 	assert.NoError(t, err)
 	assert.Equal(t, 44, len(strs))
 	assert.Contains(t, strs[0], "Washington")

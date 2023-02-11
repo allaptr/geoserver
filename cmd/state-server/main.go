@@ -5,11 +5,12 @@ import (
 	"log"
 	"net/http"
 	"state-server/location"
+	"state-server/maps"
 	"strconv"
 )
 
 func init() {
-	err := location.CreateMap("../../data/states.json")
+	err := maps.CreateMap("data/states.json")
 	if err != nil {
 		log.Fatal(err)
 	}

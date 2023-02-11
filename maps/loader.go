@@ -1,4 +1,4 @@
-package data
+package maps
 
 import (
 	"bufio"
@@ -24,7 +24,7 @@ type StateData struct {
 
 var statesData []StateData
 
-func Load(filename string) ([]StateData, error) {
+func load(filename string) ([]StateData, error) {
 	strs, err := readData(filename)
 	if err != nil {
 		return nil, errors.Wrap(err, "readData")

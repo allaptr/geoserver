@@ -1,8 +1,7 @@
-package location
+package maps
 
 import (
 	"math"
-	"state-server/data"
 
 	"github.com/pkg/errors"
 )
@@ -17,7 +16,7 @@ type Polygon struct {
 var polygons []Polygon
 
 func CreateMap(dataFilePath string) error {
-	d, err := data.Load(dataFilePath)
+	d, err := load(dataFilePath)
 	if err != nil {
 		return errors.Wrap(err, "load")
 	}
@@ -29,8 +28,12 @@ func CreateMap(dataFilePath string) error {
 	return nil
 }
 
+func GetStatePolygons() []Polygon {
+	return polygons
+}
+
 // Populates the collection of polygons from the serialized states border data
-func createPolygons(data []data.StateData) ([]Polygon, error) {
+func createPolygons(data []StateData) ([]Polygon, error) {
 	plgns := make([]Polygon, len(data))
 	for ind, d := range data {
 		path, bounds := newClosedPath(d.Border)
@@ -65,7 +68,7 @@ func (b *bounds) adjustBounds(borderPont []float64) {
 }
 
 // check if the location point is within the polygon (state) bounds
-func (b *bounds) within(point []float64) bool {
+func (b *bounds) Within(point []float64) bool {
 	if point[0] >= b.minX && point[0] <= b.maxX && point[1] >= b.minY && point[1] <= b.maxY {
 		return true
 	}
@@ -97,7 +100,7 @@ func newClosedPath(border [][]float64) (closedPath, bounds) {
 // The method 'contains' returns whether the point is inside the closed path (polygon)
 // It implements the algorithm described at https://www.geeksforgeeks.org/how-to-check-if-a-given-point-lies-inside-a-polygon/
 // The code is not handling the `point ‘g’` special case described in the algorithm above.
-func (p closedPath) contains(point []float64) bool {
+func (p closedPath) Contains(point []float64) bool {
 	count := 0
 	for _, seg := range p.segments {
 		if seg.intersects(point) {
