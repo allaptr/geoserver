@@ -1,7 +1,7 @@
 # State Server!
 
-Given GPS coordinates of a location,the state server tells us in which state, if any, the point is.
-Some simplified geometries are included in https://github.com/allaptr/stateserver/blob/master/cmd/state-server/data/states.json (so greatly simplified,that some of the smaller ones disappear). I am planning to improve the states border data in the next release.
+Given GPS coordinates of a location,the state server tells us in which state, if any, the point is located. 
+Some simplified geometries are included in https://github.com/allaptr/stateserver/blob/master/cmd/state-server/data/states.json (so greatly simplified,that some of the smaller ones disappear). I am planning to update & improve the states border data.
 ## Behavior
 
   $ ./state-server &
