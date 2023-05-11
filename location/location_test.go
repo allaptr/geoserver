@@ -1,14 +1,14 @@
 package location
 
 import (
-	"state-server/maps"
+	"geoserver/maps"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func Test_LocationState(t *testing.T) {
-	err := maps.CreateMap("../cmd/state-server/data/states.json")
+	err := maps.CreateMap("../cmd/geoserver/data/states.json")
 	assert.NoError(t, err)
 
 	testData := []struct {

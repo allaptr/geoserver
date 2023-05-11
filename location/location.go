@@ -1,6 +1,6 @@
 package location
 
-import "state-server/maps"
+import "geoserver/maps"
 
 type GeoLocation interface {
 	// Given the geo location of a point, return the name of the state of the location
